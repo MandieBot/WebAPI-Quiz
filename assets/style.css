@@ -7,5 +7,10 @@
 }
 
 /* .hide { */
-  /* display: none; */
+/* display: none; */
 
+body img {
+  width: 140px;
+  height: 80px;
+  border-radius: 20%;
+}

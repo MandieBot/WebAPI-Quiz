@@ -1,4 +1,4 @@
-//Array of objects
+//Create an array of objects for your questions
 
 var questions = [
   {
@@ -17,3 +17,11 @@ var questions = [
     answer: "55mph",
   },
 ];
+
+//Score counter should never be less than 0
+var finalScore = 0;
+
+//Make an element and a variable for the timer
+var countdown = document.querySelector("#countdown");
+
+function quizBegins() {}

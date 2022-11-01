@@ -1,0 +1,12 @@
+//set up html to have start screen, questions screen, and score page
+//make sure js and css files are linked
+
+Time portion - make an element and variable 
+
+Variables- anything that we need to keep track of:
+Var finalScore (should never be less than 0)
+
+Questions mechanics- each question has the same number of choices
+-clicking the answer goes to the next question
+-Add correct/wrong alerts later
+-do the timer later
