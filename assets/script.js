@@ -32,11 +32,11 @@ var indexTracker = 0;
 startBtn.addEventListener("click", function () {
   var headerEl = document.getElementById("header");
   headerEl.style.display = "none";
-  firstQ();
+  loadQuestion();
 });
 
 //Run the first question
-function firstQ() {
+function loadQuestion() {
   var firstQ = document.getElementById("questions");
   var firstQTitle = document.getElementById("question-title");
   firstQTitle.textContent = questions[indexTracker].title;
@@ -61,8 +61,10 @@ function answerClick(event) {
   var val = event.target.textContent;
   if (val === questions[indexTracker].answer) {
     console.log(val);
-    
+  } else {
+    console.log("Wrong Answer");
   }
+//   indexTracker++;
 }
 //Run the second question
 function secondQ() {
@@ -85,15 +87,15 @@ function secondQ() {
 function thirdQ() {
   var thirdQ = document.getElementById("questions");
   var thirdQtitle = document.getElementById("question-title");
-  thirdQtitle.textContent = questions[2].title;
+  thirdQtitle.textContent = questions[indexTracker].title;
   var thirdQChoices = document.getElementById("question - choices");
   var choiceI = document.createElement("button");
-  choiceI.textContent = questions[2].choices[0];
+  choiceI.textContent = questions[indexTracker].choices[0];
   thirdQChoices.appendChild(choiceI);
   var choiceII = document.createElement("button");
-  choiceII.textContent = questions[2].choices[1];
+  choiceII.textContent = questions[indexTracker].choices[1];
   thirdQChoices.appendChild(choiceII);
   var choiceIII = document.createElement("button");
-  choiceIII.textContent = questions[2].choices[2];
+  choiceIII.textContent = questions[indexTracker].choices[2];
   thirdQChoices.appendChild(choiceIII);
 }
