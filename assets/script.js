@@ -21,8 +21,10 @@ var questions = [
 //Score counter should never be less than 0
 var finalScore = 0;
 
+var timeLeft = 30;
+
 //Make an element and a variable for the timer
-var countdown = document.querySelector("#countdown");
+var countdownEl = document.getElementById("countdown");
 
 //Create functionality of the start button
 var startBtn = document.getElementById("start");
@@ -38,7 +40,16 @@ startBtn.addEventListener("click", function () {
   headerEl.style.display = "none";
   loadQuestion();
 });
-
+function countdown() {
+  var timeInterval = setInterval(function () {
+    countdownEl.textContent = timeLeft + " seconds remaining";
+    timeLeft--;
+    if (timeLeft <= 0) {
+      clearInterval(timeInterval);
+      // TO DO: THIS IS WHERE THE QUIZEND FUNCTION WILL GO
+    }
+  }, 1000);
+}
 //Run the first question
 function loadQuestion() {
   var questionsDiv = document.querySelector("#question-choices");
@@ -65,15 +76,19 @@ function loadQuestion() {
   choice3.addEventListener("click", answerClick);
   choice3.textContent = questions[indexTracker].choices[2];
   firstQChoices.appendChild(choice3);
+  countdown();
 }
 function answerClick(event) {
   var val = event.target.textContent;
   if (val === questions[indexTracker].answer) {
+    alert("Correct!");
     indexTracker++;
     secondQ();
     // console.log(val);
     console.log(indexTracker);
   } else {
+    timeLeft -= 5;
+    alert("Incorrect! Try Again!");
     console.log("Wrong Answer");
   }
 }
