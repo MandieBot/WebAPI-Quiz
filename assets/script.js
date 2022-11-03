@@ -29,6 +29,10 @@ var startBtn = document.getElementById("start");
 
 var indexTracker = 0;
 
+var button1 = document.getElementById("answer-buttons");
+var button2 = document.getElementById("answer-buttons");
+var button3 = document.getElementById("answer-buttons");
+
 startBtn.addEventListener("click", function () {
   var headerEl = document.getElementById("header");
   headerEl.style.display = "none";
@@ -42,16 +46,16 @@ function loadQuestion() {
   firstQTitle.textContent = questions[indexTracker].title;
   var firstQChoices = document.getElementById("question-choices");
 
-  //   firstQChoices.textContent = questions[0].choices;
   var choice1 = document.createElement("button");
   choice1.addEventListener("click", answerClick);
   choice1.textContent = questions[indexTracker].choices[0];
   firstQChoices.appendChild(choice1);
-  //   console.log(questions[0]);
+
   var choice2 = document.createElement("button");
   choice2.addEventListener("click", answerClick);
   choice2.textContent = questions[indexTracker].choices[1];
   firstQChoices.appendChild(choice2);
+
   var choice3 = document.createElement("button");
   choice3.addEventListener("click", answerClick);
   choice3.textContent = questions[indexTracker].choices[2];
@@ -60,11 +64,13 @@ function loadQuestion() {
 function answerClick(event) {
   var val = event.target.textContent;
   if (val === questions[indexTracker].answer) {
-    console.log(val);
+    indexTracker++;
+    secondQ();
+    // console.log(val);
+    console.log(indexTracker);
   } else {
     console.log("Wrong Answer");
   }
-//   indexTracker++;
 }
 //Run the second question
 function secondQ() {
@@ -72,15 +78,24 @@ function secondQ() {
   var secondQTitle = document.getElementById("question-title");
   secondQTitle.textContent = questions[indexTracker].title;
   var secondQChoices = document.getElementById("question-choices");
-  var choiceA = document.createElement("button");
-  choiceA.textContent = questions[indexTracker].choices[0];
-  secondQChoices.appendChild(choiceA);
-  var choiceB = document.createElement("button");
-  choiceB.textContent = questions[indexTracker].choices[1];
-  secondQChoices.appendChild(choiceB);
-  var choiceC = document.createElement("button");
-  choiceC.textContent = questions[indexTracker].choices[2];
-  secondQChoices.appendChild(choiceC);
+
+
+    var choiceA = document.getElementById("answer-buttons");
+  var button1 = document.getElementById("answer-buttons");
+  button1.textContent = "Benjamin Franklin";
+
+//   var choiceA = document.createElement("button");
+  //   choiceA.textContent = questions[indexTracker].choices[0];
+  //   secondQChoices.appendChild(choiceA);
+  // var choiceB = document.createElement("button");
+  // choiceB.textContent = questions[indexTracker].choices[1];
+  // secondQChoices.appendChild(choiceB);
+  // var choiceC = document.createElement("button");
+  // choiceC.textContent = questions[indexTracker].choices[2];
+  // secondQChoices.appendChild(choiceC);
+  var button1 = document.getElementById("answer-buttons");
+  //   var button2 = document.getElementById("answer-buttons");
+  //   var button3 = document.getElementById("answer-buttons");
 }
 
 //Run the third question
