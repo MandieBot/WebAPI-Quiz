@@ -29,9 +29,9 @@ var startBtn = document.getElementById("start");
 
 var indexTracker = 0;
 
-var button1 = document.getElementById("answer-buttons");
-var button2 = document.getElementById("answer-buttons");
-var button3 = document.getElementById("answer-buttons");
+// var button1 = document.getElementById("answer-buttons");
+// var button2 = document.getElementById("answer-buttons");
+// var button3 = document.getElementById("answer-buttons");
 
 startBtn.addEventListener("click", function () {
   var headerEl = document.getElementById("header");
@@ -41,9 +41,14 @@ startBtn.addEventListener("click", function () {
 
 //Run the first question
 function loadQuestion() {
+  var questionsDiv = document.querySelector("#question-choices");
+  questionsDiv.textContent = "";
+
   var firstQ = document.getElementById("questions");
+
   var firstQTitle = document.getElementById("question-title");
   firstQTitle.textContent = questions[indexTracker].title;
+
   var firstQChoices = document.getElementById("question-choices");
 
   var choice1 = document.createElement("button");
@@ -74,28 +79,30 @@ function answerClick(event) {
 }
 //Run the second question
 function secondQ() {
+  var questionsDiv = document.querySelector("#question-choices");
+  questionsDiv.textContent = "";
+
   var secondQ = document.getElementById("questions");
+
   var secondQTitle = document.getElementById("question-title");
   secondQTitle.textContent = questions[indexTracker].title;
+
   var secondQChoices = document.getElementById("question-choices");
 
+  var choiceA = document.createElement("button");
+  choiceA.addEventListener("click", answerClick);
+  choiceA.textContent = questions[indexTracker].choices[0];
+  secondQChoices.appendChild(choiceA);
 
-    var choiceA = document.getElementById("answer-buttons");
-  var button1 = document.getElementById("answer-buttons");
-  button1.textContent = "Benjamin Franklin";
+  var choiceB = document.createElement("button");
+  choiceB.addEventListener("click", answerClick);
+  choiceB.textContent = questions[indexTracker].choices[1];
+  secondQChoices.appendChild(choiceB);
 
-//   var choiceA = document.createElement("button");
-  //   choiceA.textContent = questions[indexTracker].choices[0];
-  //   secondQChoices.appendChild(choiceA);
-  // var choiceB = document.createElement("button");
-  // choiceB.textContent = questions[indexTracker].choices[1];
-  // secondQChoices.appendChild(choiceB);
-  // var choiceC = document.createElement("button");
-  // choiceC.textContent = questions[indexTracker].choices[2];
-  // secondQChoices.appendChild(choiceC);
-  var button1 = document.getElementById("answer-buttons");
-  //   var button2 = document.getElementById("answer-buttons");
-  //   var button3 = document.getElementById("answer-buttons");
+  var choiceC = document.createElement("button");
+  choiceC.addEventListener("click", answerClick);
+  choiceC.textContent = questions[indexTracker].choices[2];
+  secondQChoices.appendChild(choiceC);
 }
 
 //Run the third question
