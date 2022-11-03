@@ -29,15 +29,15 @@ var countdownEl = document.getElementById("countdown");
 //Create functionality of the start button
 var startBtn = document.getElementById("start");
 
-var indexTracker = 0;
+//Create functionality of the View Scores button
+var scoreBtn = document.getElementById("view-scores");
 
-// var button1 = document.getElementById("answer-buttons");
-// var button2 = document.getElementById("answer-buttons");
-// var button3 = document.getElementById("answer-buttons");
+var indexTracker = 0;
 
 startBtn.addEventListener("click", function () {
   var headerEl = document.getElementById("header");
   headerEl.style.display = "none";
+  scoreBtn.style.display = "none";
   loadQuestion();
 });
 function countdown() {
@@ -46,7 +46,7 @@ function countdown() {
     timeLeft--;
     if (timeLeft <= 0) {
       clearInterval(timeInterval);
-      // TO DO: THIS IS WHERE THE QUIZEND FUNCTION WILL GO
+      quizEnd();
     }
   }, 1000);
 }
@@ -78,6 +78,7 @@ function loadQuestion() {
   firstQChoices.appendChild(choice3);
   countdown();
 }
+//Logs correct/incorrect answer before moving onto next question
 function answerClick(event) {
   var val = event.target.textContent;
   if (val === questions[indexTracker].answer) {
@@ -89,7 +90,6 @@ function answerClick(event) {
   } else {
     timeLeft -= 5;
     alert("Incorrect! Try Again!");
-    console.log("Wrong Answer");
   }
 }
 //Run the second question
@@ -136,3 +136,18 @@ function thirdQ() {
   choiceIII.textContent = questions[indexTracker].choices[2];
   thirdQChoices.appendChild(choiceIII);
 }
+
+//WHEN all questions are answered or the timer reaches 0
+// THEN the game is over
+// WHEN the game is over
+// THEN I can save my initials and score (local storage)
+
+// scoreBtn.addEventListener("click", function () {
+//     var scorecard = document.getElementById("view-scores");
+//     scorecard.style.display = "none";
+
+//   var headerEl = document.getElementById("header");
+//   headerEl.style.display = "none";
+
+//End the quiz and go to high score page
+function quizEnd() {}
