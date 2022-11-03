@@ -18,6 +18,7 @@ var questions = [
   },
 ];
 
+console.log(questions.length);
 //Score counter should never be less than 0
 var finalScore = 0;
 
@@ -25,6 +26,8 @@ var timeLeft = 30;
 
 //Make an element and a variable for the timer
 var countdownEl = document.getElementById("countdown");
+
+var answerBtns = document.getElementById("question-choices");
 
 //Create functionality of the start button
 var startBtn = document.getElementById("start");
@@ -39,6 +42,7 @@ startBtn.addEventListener("click", function () {
   headerEl.style.display = "none";
   scoreBtn.style.display = "none";
   loadQuestion();
+  countdown();
 });
 function countdown() {
   var timeInterval = setInterval(function () {
@@ -50,6 +54,7 @@ function countdown() {
     }
   }, 1000);
 }
+
 //Run the first question
 function loadQuestion() {
   var questionsDiv = document.querySelector("#question-choices");
@@ -76,7 +81,7 @@ function loadQuestion() {
   choice3.addEventListener("click", answerClick);
   choice3.textContent = questions[indexTracker].choices[2];
   firstQChoices.appendChild(choice3);
-  countdown();
+  //   countdown();
 }
 //Logs correct/incorrect answer before moving onto next question
 function answerClick(event) {
@@ -84,58 +89,64 @@ function answerClick(event) {
   if (val === questions[indexTracker].answer) {
     alert("Correct!");
     indexTracker++;
-    secondQ();
+    if (indexTracker == questions.length) {
+      quizEnd();
+    } else {
+      loadQuestion();
+    }
     // console.log(val);
     console.log(indexTracker);
+    //   } else if (indexTracker == questions.length) {
+    //     quizEnd();
   } else {
     timeLeft -= 5;
     alert("Incorrect! Try Again!");
   }
 }
 //Run the second question
-function secondQ() {
-  var questionsDiv = document.querySelector("#question-choices");
-  questionsDiv.textContent = "";
+// function secondQ() {
+//   var questionsDiv = document.querySelector("#question-choices");
+//   questionsDiv.textContent = "";
 
-  var secondQ = document.getElementById("questions");
+//   var secondQ = document.getElementById("questions");
 
-  var secondQTitle = document.getElementById("question-title");
-  secondQTitle.textContent = questions[indexTracker].title;
+//   var secondQTitle = document.getElementById("question-title");
+//   secondQTitle.textContent = questions[indexTracker].title;
 
-  var secondQChoices = document.getElementById("question-choices");
+//   var secondQChoices = document.getElementById("question-choices");
 
-  var choiceA = document.createElement("button");
-  choiceA.addEventListener("click", answerClick);
-  choiceA.textContent = questions[indexTracker].choices[0];
-  secondQChoices.appendChild(choiceA);
+//   var choiceA = document.createElement("button");
+//   choiceA.addEventListener("click", answerClick);
+//   choiceA.textContent = questions[indexTracker].choices[0];
+//   secondQChoices.appendChild(choiceA);
 
-  var choiceB = document.createElement("button");
-  choiceB.addEventListener("click", answerClick);
-  choiceB.textContent = questions[indexTracker].choices[1];
-  secondQChoices.appendChild(choiceB);
+//   var choiceB = document.createElement("button");
+//   choiceB.addEventListener("click", answerClick);
+//   choiceB.textContent = questions[indexTracker].choices[1];
+//   secondQChoices.appendChild(choiceB);
 
-  var choiceC = document.createElement("button");
-  choiceC.addEventListener("click", answerClick);
-  choiceC.textContent = questions[indexTracker].choices[2];
-  secondQChoices.appendChild(choiceC);
-}
+//   var choiceC = document.createElement("button");
+//   choiceC.addEventListener("click", answerClick);
+//   choiceC.textContent = questions[indexTracker].choices[2];
+//   secondQChoices.appendChild(choiceC);
+// }
 
 //Run the third question
-function thirdQ() {
-  var thirdQ = document.getElementById("questions");
-  var thirdQtitle = document.getElementById("question-title");
-  thirdQtitle.textContent = questions[indexTracker].title;
-  var thirdQChoices = document.getElementById("question - choices");
-  var choiceI = document.createElement("button");
-  choiceI.textContent = questions[indexTracker].choices[0];
-  thirdQChoices.appendChild(choiceI);
-  var choiceII = document.createElement("button");
-  choiceII.textContent = questions[indexTracker].choices[1];
-  thirdQChoices.appendChild(choiceII);
-  var choiceIII = document.createElement("button");
-  choiceIII.textContent = questions[indexTracker].choices[2];
-  thirdQChoices.appendChild(choiceIII);
-}
+// function thirdQ() {
+//   var thirdQ = document.getElementById("questions");
+//   var thirdQtitle = document.getElementById("question-title");
+//   thirdQtitle.textContent = questions[indexTracker].title;
+//   var thirdQChoices = document.getElementById("question - choices");
+//   var choiceI = document.createElement("button");
+//   choiceI.textContent = questions[indexTracker].choices[0];
+//   thirdQChoices.appendChild(choiceI);
+//   var choiceII = document.createElement("button");
+//   choiceII.textContent = questions[indexTracker].choices[1];
+//   thirdQChoices.appendChild(choiceII);
+//   var choiceIII = document.createElement("button");
+//   choiceIII.textContent = questions[indexTracker].choices[2];
+//   thirdQChoices.appendChild(choiceIII);
+//
 
 //WHEN all questions are answered or the timer reaches 0
 // THEN the game is over
@@ -150,4 +161,9 @@ function thirdQ() {
 //   headerEl.style.display = "none";
 
 //End the quiz and go to high score page
-function quizEnd() {}
+function quizEnd() {
+  answerBtns.style.display = "none";
+  alert("Game Over - Your Score is: " + timeLeft);
+  finalScore = timeLeft;
+  console.log("Your Score is " + finalScore);
+}
