@@ -18,15 +18,16 @@ var questions = [
   },
 ];
 
-console.log(questions.length);
 //Score counter should never be less than 0
 var finalScore = 0;
 
+//Record the seconds remaining in countdown
 var timeLeft = 30;
 
 //Make an element and a variable for the timer
 var countdownEl = document.getElementById("countdown");
 
+//Create functionality of the answer buttons
 var answerBtns = document.getElementById("question-choices");
 
 //Create functionality of the start button
@@ -35,10 +36,13 @@ var startBtn = document.getElementById("start");
 //Create functionality of the View Scores button
 var scoreBtn = document.getElementById("view-scores");
 
+//Store the initials input from the form
 var initialsForm = document.getElementById("textBox");
 
+//Roll through each index of the questions array
 var indexTracker = 0;
 
+//Allow the quiz to begin upon clicking start button
 startBtn.addEventListener("click", function () {
   var headerEl = document.getElementById("header");
   headerEl.style.display = "none";
@@ -47,6 +51,8 @@ startBtn.addEventListener("click", function () {
   loadQuestion();
   countdown();
 });
+
+//Set the timer and clear it at quiz end
 function countdown() {
   var timeInterval = setInterval(function () {
     countdownEl.textContent = timeLeft + " seconds remaining";
@@ -58,7 +64,7 @@ function countdown() {
   }, 1000);
 }
 
-//Run the first question
+//Run the quiz
 function loadQuestion() {
   var questionsDiv = document.querySelector("#question-choices");
   questionsDiv.textContent = "";
@@ -84,7 +90,6 @@ function loadQuestion() {
   choice3.addEventListener("click", answerClick);
   choice3.textContent = questions[indexTracker].choices[2];
   firstQChoices.appendChild(choice3);
-  //   countdown();
 }
 //Logs correct/incorrect answer before moving onto next question
 function answerClick(event) {
@@ -97,73 +102,13 @@ function answerClick(event) {
     } else {
       loadQuestion();
     }
-    // console.log(val);
-    console.log(indexTracker);
-    //   } else if (indexTracker == questions.length) {
-    //     quizEnd();
   } else {
     timeLeft -= 5;
     alert("Incorrect! Try Again!");
   }
 }
-//Run the second question
-// function secondQ() {
-//   var questionsDiv = document.querySelector("#question-choices");
-//   questionsDiv.textContent = "";
 
-//   var secondQ = document.getElementById("questions");
-
-//   var secondQTitle = document.getElementById("question-title");
-//   secondQTitle.textContent = questions[indexTracker].title;
-
-//   var secondQChoices = document.getElementById("question-choices");
-
-//   var choiceA = document.createElement("button");
-//   choiceA.addEventListener("click", answerClick);
-//   choiceA.textContent = questions[indexTracker].choices[0];
-//   secondQChoices.appendChild(choiceA);
-
-//   var choiceB = document.createElement("button");
-//   choiceB.addEventListener("click", answerClick);
-//   choiceB.textContent = questions[indexTracker].choices[1];
-//   secondQChoices.appendChild(choiceB);
-
-//   var choiceC = document.createElement("button");
-//   choiceC.addEventListener("click", answerClick);
-//   choiceC.textContent = questions[indexTracker].choices[2];
-//   secondQChoices.appendChild(choiceC);
-// }
-
-//Run the third question
-// function thirdQ() {
-//   var thirdQ = document.getElementById("questions");
-//   var thirdQtitle = document.getElementById("question-title");
-//   thirdQtitle.textContent = questions[indexTracker].title;
-//   var thirdQChoices = document.getElementById("question - choices");
-//   var choiceI = document.createElement("button");
-//   choiceI.textContent = questions[indexTracker].choices[0];
-//   thirdQChoices.appendChild(choiceI);
-//   var choiceII = document.createElement("button");
-//   choiceII.textContent = questions[indexTracker].choices[1];
-//   thirdQChoices.appendChild(choiceII);
-//   var choiceIII = document.createElement("button");
-//   choiceIII.textContent = questions[indexTracker].choices[2];
-//   thirdQChoices.appendChild(choiceIII);
-//
-
-//WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-// WHEN the game is over
-// THEN I can save my initials and score (local storage)
-
-// scoreBtn.addEventListener("click", function () {
-//     var scorecard = document.getElementById("view-scores");
-//     scorecard.style.display = "none";
-
-//   var headerEl = document.getElementById("header");
-//   headerEl.style.display = "none";
-
-//End the quiz and go to high score page
+//End the quiz - record score and initials in local storage
 function quizEnd() {
   answerBtns.style.display = "none";
   alert("Game Over - Your Score is: " + timeLeft);
