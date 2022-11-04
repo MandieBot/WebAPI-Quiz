@@ -35,12 +35,15 @@ var startBtn = document.getElementById("start");
 //Create functionality of the View Scores button
 var scoreBtn = document.getElementById("view-scores");
 
+var initialsForm = document.getElementById("textBox");
+
 var indexTracker = 0;
 
 startBtn.addEventListener("click", function () {
   var headerEl = document.getElementById("header");
   headerEl.style.display = "none";
   scoreBtn.style.display = "none";
+  initialsForm.style.display = "none";
   loadQuestion();
   countdown();
 });
@@ -166,4 +169,10 @@ function quizEnd() {
   alert("Game Over - Your Score is: " + timeLeft);
   finalScore = timeLeft;
   console.log("Your Score is " + finalScore);
+  var score = timeLeft;
+  var userInitials = document.getElementById("initials");
+  localStorage.setItem("score", timeLeft);
+  localStorage.setItem("userInitials", initials);
+  localStorage.getItem("score");
+  localStorage.getItem("userInitials");
 }

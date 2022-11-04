@@ -6,11 +6,25 @@
   text-align: center;
 }
 
-/* .hide { */
-/* display: none; */
+header div {
+  font-size: 25px;
+}
+
+#start {
+  font-size: 18px;
+  padding-bottom: 15px;
+}
 
 body img {
   width: 140px;
   height: 80px;
   border-radius: 20%;
+}
+
+form {
+  padding: 30px;
+}
+
+#answer-buttons {
+  font-size: 20px;
 }
