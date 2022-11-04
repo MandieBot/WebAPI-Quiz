@@ -18,6 +18,9 @@ var questions = [
   },
 ];
 
+var savedScores = JSON.parse(localStorage.getItem("score")) || [];
+console.log("pageLoad savedScores", savedScores);
+
 //Score counter should never be less than 0
 var finalScore = 0;
 
@@ -97,7 +100,7 @@ function answerClick(event) {
   if (val === questions[indexTracker].answer) {
     alert("Correct!");
     indexTracker++;
-    if (indexTracker == questions.length) {
+    if (indexTracker === questions.length) {
       quizEnd();
     } else {
       loadQuestion();
@@ -115,9 +118,17 @@ function quizEnd() {
   finalScore = timeLeft;
   console.log("Your Score is " + finalScore);
   var score = timeLeft;
-  var userInitials = document.getElementById("initials");
-  localStorage.setItem("score", timeLeft);
-  localStorage.setItem("userInitials", initials);
-  localStorage.getItem("score");
-  localStorage.getItem("userInitials");
+  var userInitials = document.getElementById("initials").value;
+  var userScore = {
+    score,
+    userInitials,
+  };
+
+  savedScores.push(userScore);
+
+  localStorage.setItem("score", JSON.stringify(savedScores));
+  console.log("quizEnd savedScores", savedScores);
+  // localStorage.setItem("userInitials", initials);
+  // localStorage.getItem(userScore);
+  // localStorage.getItem("userInitials");
 }
