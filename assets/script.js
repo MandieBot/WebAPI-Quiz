@@ -2,19 +2,19 @@
 
 var questions = [
   {
-    title: "Where do wild turkeys sleep?",
-    choices: ["Underground", "On grass", "In trees"],
-    answer: "In trees",
+    title: "What is the correct syntax when writing a function?",
+    choices: ["function : sampleFunction()", "function sampleFunction()", "Func = sampleFunction()"],
+    answer: "function sampleFunction()",
   },
   {
-    title: "Which Founding Father preferred turkeys to bald eagles?",
-    choices: ["Benjamin Franklin", "John Adams", "Thomas Jefferson"],
-    answer: "Benjamin Franklin",
+    title: "How does a For Loop start?",
+    choices: ["for(i = 0; i <= 3; i++)", "for i++; i = 0", "for 1-5 = i"],
+    answer: "for(i = 0; i <= 3; i++)",
   },
   {
-    title: "How fast can wild turkeys fly?",
-    choices: ["15mph", "30mph", "55mph"],
-    answer: "55mph",
+    title: "Which one of the following is an array?",
+    choices: ["var spices = 1:pepper, 2:basil, 3:turmeric", "var spices = { pepper, basil, turmeric }", "var spices = [pepper, basil, turmeric]"],
+    answer: "var spices = [pepper, basil, turmeric]",
   },
 ];
 
@@ -69,6 +69,8 @@ function countdown() {
 
 //Run the quiz
 function loadQuestion() {
+  startBtn.classList.add("hide");
+  // questionBox.classList.remove("hide");
   var questionsDiv = document.querySelector("#question-choices");
   questionsDiv.textContent = "";
 

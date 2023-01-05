@@ -1,30 +1,68 @@
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  background-color: aliceblue;
   color: black;
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
 }
 
-header div {
-  font-size: 25px;
+h1 {
+  margin-right: 100px;
+  font-size: 40px;
+  color: rgb(151, 2, 151);
 }
 
-#start {
-  font-size: 18px;
-  padding-bottom: 15px;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
 }
 
-body img {
-  width: 140px;
-  height: 80px;
-  border-radius: 20%;
+.container {
+  width: 800px;
+  max-width: 80%;
+  background-color: #ffe900;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 15px 1px;
 }
 
-form {
-  padding: 30px;
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 15px;
+  margin: 25px;
 }
 
-#answer-buttons {
+.btn {
+  width: 300px;
+  height: 75px;
+  border-radius: 10px;
+  border: 4px solid rgb(151, 2, 151);
+  padding: 10px;
+  color: black;
   font-size: 20px;
+}
+
+.btn:hover {
+  border: 4px dotted rgb(151, 2, 151);
+}
+
+.start-btn {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 20px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hide {
+  display: none;
 }
