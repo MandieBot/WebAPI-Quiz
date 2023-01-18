@@ -18,6 +18,11 @@ var questions = [
   },
 ];
 
+//Declare global variables
+var questionsDiv = document.getElementById("questionsDiv");
+
+var submitButton = document.getElementById("submitButton");
+
 var savedScores = JSON.parse(localStorage.getItem("score")) || [];
 console.log("pageLoad savedScores", savedScores);
 
@@ -50,14 +55,17 @@ startBtn.addEventListener("click", function () {
   var headerEl = document.getElementById("header");
   headerEl.style.display = "none";
   scoreBtn.style.display = "none";
-  initialsForm.style.display = "none";
+  // initialsForm.style.display = "none";
   loadQuestion();
   countdown();
 });
 
+//Declare global variable so it can be accessed in other functions
+var timeInterval;
+
 //Set the timer and clear it at quiz end
 function countdown() {
-  var timeInterval = setInterval(function () {
+  timeInterval = setInterval(function () {
     countdownEl.textContent = timeLeft + " seconds remaining";
     timeLeft--;
     if (timeLeft <= 0) {
@@ -70,7 +78,7 @@ function countdown() {
 //Run the quiz
 function loadQuestion() {
   startBtn.classList.add("hide");
-  // questionBox.classList.remove("hide");
+
   var questionsDiv = document.querySelector("#question-choices");
   questionsDiv.textContent = "";
 
@@ -82,20 +90,24 @@ function loadQuestion() {
   var firstQChoices = document.getElementById("question-choices");
 
   var choice1 = document.createElement("button");
+  choice1.setAttribute("class", "btn");
   choice1.addEventListener("click", answerClick);
   choice1.textContent = questions[indexTracker].choices[0];
   firstQChoices.appendChild(choice1);
 
   var choice2 = document.createElement("button");
+  choice2.setAttribute("class", "btn");
   choice2.addEventListener("click", answerClick);
   choice2.textContent = questions[indexTracker].choices[1];
   firstQChoices.appendChild(choice2);
 
   var choice3 = document.createElement("button");
+  choice3.setAttribute("class", "btn");
   choice3.addEventListener("click", answerClick);
   choice3.textContent = questions[indexTracker].choices[2];
   firstQChoices.appendChild(choice3);
 }
+
 //Logs correct/incorrect answer before moving onto next question
 function answerClick(event) {
   var val = event.target.textContent;
@@ -113,12 +125,20 @@ function answerClick(event) {
   }
 }
 
-//End the quiz - record score and initials in local storage
+//End the quiz
 function quizEnd() {
+  clearInterval(timeInterval);
   answerBtns.style.display = "none";
+  questionsDiv.setAttribute("class", "hide");
+  var scoreDiv = document.getElementById("scoreDiv");
+  scoreDiv.removeAttribute("class");
   alert("Game Over - Your Score is: " + timeLeft);
   finalScore = timeLeft;
   console.log("Your Score is " + finalScore);
+}
+
+//Save initials and scores into local storage
+function saveScore() {
   var score = timeLeft;
   var userInitials = document.getElementById("initials").value;
   var userScore = {
@@ -128,9 +148,19 @@ function quizEnd() {
 
   savedScores.push(userScore);
 
-  localStorage.setItem("score", JSON.stringify(savedScores));
+  localStorage.setItem("scores", JSON.stringify(savedScores));
   console.log("quizEnd savedScores", savedScores);
-  // localStorage.setItem("userInitials", initials);
-  // localStorage.getItem(userScore);
-  // localStorage.getItem("userInitials");
 }
+
+//Display high scores
+function displayScores() {
+  var scoresArray = JSON.parse(localStorage.getItem("scores"));
+  var scoreList = document.getElementById("scoreList");
+  scoresArray.forEach((element) => {
+    var scoreItem = document.createElement("li");
+    scoreItem.textContent = element.userInitials + " - " + element.score;
+    scoreList.append(scoreItem);
+  });
+}
+submitButton.onclick = saveScore;
+displayScores();

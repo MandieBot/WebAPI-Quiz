@@ -10,14 +10,13 @@
   </head>
   <body>
     <h1 id="header">JavaScript Fundamentals</h1>
-    <div class="container">
+    <div id="questionsDiv" class="container">
       <div id="questionBox" class="hide">
         <div id="questions">Question</div>
         <div id="answer-buttons" class="btn-grid">
           <button class="btn">Answer 1</button>
           <button class="btn">Answer 2</button>
           <button class="btn">Answer 3</button>
-          <!-- <button class="btn">Answer 4</button> -->
         </div>
       </div>
       <section id="questions">
@@ -28,24 +27,20 @@
       </section>
       <div class="controls">
         <button id="start" class="start-btn btn">Begin Quiz</button>
-        <!-- <button id="nextBtn" class="next-btn btn hide">Next</button> -->
       </div>
     </div>
 
-    <!-- <!-- <header id="header">
-      <h1>The Truth About Turkeys</h1>
-      <div id="start">
-        <button id="start">Test your Knowledge Here</button>
-      </div>
-    
-    </header> -->
-
-    <section id="view-scores">
-      <button id="view-scores">View High Scores</button>
-    </section>
-    <form id="textBox">
-      <label for="initialsInput">Initials:</label>
+    <div id="scoreDiv" class="hide">
+      <section id="view-scores">
+        <button id="view-scores">View High Scores</button>
+      </section>
+      <h2 class="scoreSection">Save Your Score Here:</h2>
+      <label for="initialsInput" class="initialBox">Initials:</label>
       <input type="text" id="initials" name="initialsInput" />
-    </form>
+      <button id="submitButton" class="btnSubmit">Submit</button>
+      <br />
+      <h2 class="scoreSection">Top-Two High Scores:</h2>
+      <ol id="scoreList"></ol>
+    </div>
   </body>
 </html>
